@@ -56,8 +56,8 @@ class Record:
 
     def __init__(self,
                  name: Name,
-                 phone: Phone = Phone(None),
-                 birthday: Birthday = Birthday(None)):
+                 phone: Phone = None,
+                 birthday: Birthday = None):
         self.name = name
         self.birthday = birthday
         self.phones = [phone] if phone else []
@@ -113,7 +113,7 @@ class AddressBook(UserDict):
             ]
             phone_str = ", ".join(
                 phones) if phones else "Not have a phone number"
-            output.append(f"{name}: {phone_str}, {record.birthday.value}")
+            output.append(f"{name}: {phone_str}, {record.birthday}")
 
         return "\n".join(output)
 
@@ -155,7 +155,8 @@ if __name__ == "__main__":
 
     name_44 = Name("Pol")
     phone_44 = Phone("(099) 123-9874")
-    record_44 = Record(name_44, phone_44)
+    bd_44 = Birthday("15.05.2000")
+    record_44 = Record(name_44, phone_44, bd_44)
     first.add_record(record_44)
 
     print(first)
